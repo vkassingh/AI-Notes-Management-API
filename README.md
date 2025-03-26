@@ -1,12 +1,10 @@
 # Notes Management API 📝📒
 
-A simple API for managing notes with CRUD operations.
+A simple API for managing notes built using Node.js, Express.js, and MongoDB.
 
 ## ⚡Features
 - Create, read, update, and delete notes
-- Search functionality
-- User authentication (optional)
-- RESTful design
+- MongoDB Atlas for database management
 
 ## ⚡ Prerequisites
 - Node.js (v23)
