@@ -1,4 +1,4 @@
-# Notes Management API 📝📒
+# Notes Management API 
 
 A simple API for managing notes built using Node.js, Express.js, and MongoDB.
 
@@ -12,7 +12,7 @@ A simple API for managing notes built using Node.js, Express.js, and MongoDB.
 - MongoDB Atlas for cloud database
 - Git
 
-## ⚡Installation
+## ⚡Setup Instructions
 ### 1. Clone the repository:
 
 ``` bash
