@@ -10,9 +10,9 @@ A simple API for managing notes with CRUD operations.
 
 ## Prerequisites
 
-- Node.js (v16 or higher recommended)
-- npm or yarn
-- MongoDB (or MongoDB Atlas for cloud database)
+- Node.js (v23)
+- npm 
+- MongoDB Atlas for cloud database
 - Git
 
 ## Installation
