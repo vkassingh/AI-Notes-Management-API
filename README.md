@@ -38,24 +38,34 @@ node server.js
 #### The API will be available at http://localhost:5000
 
 ### ⚡How to Test the API
-Create a Note
+#### Create a Note 
+``` bash
 curl -X POST http://localhost:5000/api/notes \
 -H "Content-Type: application/json" \
 -d '{"title": "First Note", "content": "Hello world!"}'
+```
 
-Get a Note
+#### Get a Note
+``` bash
 curl http://localhost:5000/api/notes/<note-id>
+```
 
-Get all Notes
+#### Get all Notes
+``` bash
 curl http://localhost:5000/api/notes
+```
 
-Update a Note
+#### Update a Note
+``` bash
 curl -X PUT http://localhost:5000/api/notes/<note-id> \
 -H "Content-Type: application/json" \
 -d '{"title": "Updated Title", "content": "New content"}'
+```
 
-Delete a Note
+#### Delete a Note
+``` bash
 curl -X DELETE http://localhost:5000/api/notes/<note-id>
+```
 
 
 
