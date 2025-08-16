@@ -6,7 +6,8 @@ const cors = require('cors');
 
 //add note Routes
 const noteRoutes = require('./routes/noteRoutes');
-
+const authRoutes = require('./routes/auth');
+const authMiddleware = require('./middleware/auth');
 
 // Middleware
 app.use(cors());
@@ -19,6 +20,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Routes
 app.use('/api/notes', noteRoutes);
+app.use('/api/auth', authMiddleware, authRoutes )
 
 // default route
 app.get('/', (req, res) => {
@@ -30,4 +32,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Notes Management API server running perfectly on  port ${PORT}`);
   
-});
+}); 
