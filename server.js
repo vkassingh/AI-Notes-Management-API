@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Routes
 app.use('/api/notes', noteRoutes);
-app.use('/api/auth', authMiddleware, authRoutes )
+app.use('/api/auth',  authRoutes )
 
 // default route
 app.get('/', (req, res) => {
