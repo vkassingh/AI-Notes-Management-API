@@ -2,7 +2,8 @@ const Note = require('../models/Note');
 const { suggestNoteTags } = require('../services/geminiService'); // Import Gemini service
 
 // Create a new note
-exports.createNote = async (req, res) => {
+class NoteController {
+async createNote(req, res) {
     try {
         const { title, content } = req.body;
 
@@ -28,7 +29,7 @@ exports.createNote = async (req, res) => {
 };
 
 // Get all notes
-exports.getAllNotes = async (req, res) => {
+async getAllNotes(req, res){
     try {
         const notes = await Note.find({});
         res.status(200).json(notes);
@@ -39,7 +40,7 @@ exports.getAllNotes = async (req, res) => {
 };
 
 // Get a single note by ID
-exports.getNoteById = async (req, res) => {
+async getNoteById(req, res){
     try {
         const note = await Note.findById(req.params.id);
         if (!note) {
@@ -53,7 +54,7 @@ exports.getNoteById = async (req, res) => {
 };
 
 // Update a note
-exports.updateNote = async (req, res) => {
+async updateNote(req, res){
     try {
         const { title, content } = req.body;
         const updates = { title, content };
@@ -80,7 +81,7 @@ exports.updateNote = async (req, res) => {
 };
 
 // Delete a note
-exports.deleteNote = async (req, res) => {
+async deleteNote(req, res){
     try {
         const deletedNote = await Note.findByIdAndDelete(req.params.id);
         if (!deletedNote) {
@@ -92,3 +93,7 @@ exports.deleteNote = async (req, res) => {
         res.status(500).json({ message: 'Server error: Could not delete note.' });
     }
 };
+
+}
+
+module.exports = new NoteController; 
