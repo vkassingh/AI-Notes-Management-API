@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const noteController = require('../controllers/noteController');
+const authMiddleware = require('../middleware/auth');
+
+//wrap the routes with Authmiddleware
+router.use(authMiddleware)
 
 // CRUD Routes
 router.post('/', noteController.createNote);
