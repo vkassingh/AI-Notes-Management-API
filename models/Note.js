@@ -22,6 +22,11 @@ const noteSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    user:  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
 });
 
 // Update `updatedAt` on save

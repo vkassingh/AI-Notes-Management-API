@@ -20,6 +20,7 @@ async createNote(req, res) {
             title,
             content,
             tags: suggestedTags, // Assign suggested tags
+            user: req.user._id // Attach the logged-in user's ID
         });
 
         const savedNote = await newNote.save();
@@ -32,7 +33,7 @@ async createNote(req, res) {
 // Get all notes
 async getAllNotes(req, res){
     try {
-        const notes = await Note.find({});
+        const notes = await Note.find({ user: req.user._id });
         res.status(200).json(notes);
     } catch (error) {
        next(error)
