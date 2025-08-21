@@ -7,7 +7,9 @@ exports.createNote = async (req, res) => {
         const { title, content } = req.body;
 
         if (!title || !content) {
-            return res.status(400).json({ message: 'Title and content are required.' });
+         const error = new Error("Title and Content are required.")
+         error.statusCode = 404;
+         throw error;
         }
 
         // Use Gemini to suggest tags based on note content
@@ -22,38 +24,37 @@ exports.createNote = async (req, res) => {
         const savedNote = await newNote.save();
         res.status(201).json(savedNote);
     } catch (error) {
-        console.error('Error creating note:', error);
-        res.status(500).json({ message: 'Server error: Could not create note.' });
+         next(error)
     }
 };
 
 // Get all notes
-exports.getAllNotes = async (req, res) => {
+exports.getAllNotes = async (req, res,next) => {
     try {
         const notes = await Note.find({});
         res.status(200).json(notes);
     } catch (error) {
-        console.error('Error fetching notes:', error);
-        res.status(500).json({ message: 'Server error: Could not retrieve notes.' });
+       next(error)
     }
 };
 
 // Get a single note by ID
-exports.getNoteById = async (req, res) => {
+exports.getNoteById = async (req, res,next) => {
     try {
         const note = await Note.findById(req.params.id);
         if (!note) {
-            return res.status(404).json({ message: 'Note not found.' });
+            const error = new error('Note not found')
+            error.statusCode = 404;
+            throw error;
         }
         res.status(200).json(note);
     } catch (error) {
-        console.error('Error fetching note by ID:', error);
-        res.status(500).json({ message: 'Server error: Could not retrieve note.' });
+        next(error) //pass error to centralized error handler
     }
 };
 
 // Update a note
-exports.updateNote = async (req, res) => {
+exports.updateNote = async (req, res, next) => {
     try {
         const { title, content } = req.body;
         const updates = { title, content };
@@ -70,25 +71,27 @@ exports.updateNote = async (req, res) => {
         );
 
         if (!updatedNote) {
-            return res.status(404).json({ message: 'Note not found.' });
+            const error = new Error('Note not found')
+            error.statusCode= 404;
+            throw error;
         }
         res.status(200).json(updatedNote);
     } catch (error) {
-        console.error('Error updating note:', error);
-        res.status(500).json({ message: 'Server error: Could not update note.' });
+       next(error) //pass error to centralized error handler
     }
 };
 
 // Delete a note
-exports.deleteNote = async (req, res) => {
+exports.deleteNote = async (req, res, next) => {
     try {
         const deletedNote = await Note.findByIdAndDelete(req.params.id);
         if (!deletedNote) {
-            return res.status(404).json({ message: 'Note not found.' });
+           const error = new Error('Note not found')
+           error.statusCode = 404;
+           throw error;
         }
         res.status(200).json({ message: 'Note deleted successfully.' });
     } catch (error) {
-        console.error('Error deleting note:', error);
-        res.status(500).json({ message: 'Server error: Could not delete note.' });
+        next(error) 
     }
 };

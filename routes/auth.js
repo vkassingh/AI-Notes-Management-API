@@ -26,4 +26,14 @@ router.post("/login", async (req, res) => {
   res.json({ token });
 });
 
+// Function to handle logging out
+function logout() {
+   
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+}
+
+
+
+
 module.exports = router;

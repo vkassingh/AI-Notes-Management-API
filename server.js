@@ -8,6 +8,7 @@ const cors = require('cors');
 const noteRoutes = require('./routes/noteRoutes');
 const authRoutes = require('./routes/auth');
 const authMiddleware = require('./middleware/auth');
+const errorHandler = require('./middleware/errorHandler');
 
 // Middleware
 app.use(cors());
@@ -26,6 +27,8 @@ app.use('/api/auth',  authRoutes )
 app.get('/', (req, res) => {
   res.send('Notes Management API server running perfectly.Its totally FREE and you can test it or create some projects by consuming');
 });
+
+app.use(errorHandler);
 
 // Start server
 const PORT = process.env.PORT || 5000;
