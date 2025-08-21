@@ -30,11 +30,7 @@ async createNote(req, res) {
 };
 
 // Get all notes
-<<<<<<< HEAD
-exports.getAllNotes = async (req, res,next) => {
-=======
 async getAllNotes(req, res){
->>>>>>> 38b0169a464cb1ae06ae53a3a2f258328f3b522c
     try {
         const notes = await Note.find({});
         res.status(200).json(notes);
@@ -44,11 +40,7 @@ async getAllNotes(req, res){
 };
 
 // Get a single note by ID
-<<<<<<< HEAD
-exports.getNoteById = async (req, res,next) => {
-=======
 async getNoteById(req, res){
->>>>>>> 38b0169a464cb1ae06ae53a3a2f258328f3b522c
     try {
         const note = await Note.findById(req.params.id);
         if (!note) {
@@ -63,11 +55,7 @@ async getNoteById(req, res){
 };
 
 // Update a note
-<<<<<<< HEAD
-exports.updateNote = async (req, res, next) => {
-=======
 async updateNote(req, res){
->>>>>>> 38b0169a464cb1ae06ae53a3a2f258328f3b522c
     try {
         const { title, content } = req.body;
         const updates = { title, content };
@@ -95,11 +83,7 @@ async updateNote(req, res){
 };
 
 // Delete a note
-<<<<<<< HEAD
-exports.deleteNote = async (req, res, next) => {
-=======
 async deleteNote(req, res){
->>>>>>> 38b0169a464cb1ae06ae53a3a2f258328f3b522c
     try {
         const deletedNote = await Note.findByIdAndDelete(req.params.id);
         if (!deletedNote) {
