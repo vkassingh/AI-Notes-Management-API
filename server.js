@@ -13,6 +13,8 @@ const errorHandler = require('./middleware/errorHandler');
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // database Connection
 mongoose.connect(process.env.MONGODB_URI)
@@ -21,19 +23,17 @@ mongoose.connect(process.env.MONGODB_URI)
 
 
   // Enable CORS for all routes
-app.use(cors());
-
-// Or configure specific origins and options
-app.use(cors({
-  origin: [
-    'http://localhost:5173', 
-    'http://localhost:3000',
-    'https://ai-notes-management-api-production.up.railway.app/'
+const corsOptions = {
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  credentials: true,
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "Access-Control-Allow-Origin",
   ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+};
+app.use(cors(corsOptions));
 
 
 // Routes

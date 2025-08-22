@@ -10,7 +10,7 @@ async function authMiddleware(req, res, next) {
     const decoded = jwt.verify(token, JWT_SECRET);
 
     // Optional: Fetch full user object from DB
-    const user = await User.findById(decoded.id);
+    const user = await User.findById(decoded.userId);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     req.user = user; // Attach full user object to request
