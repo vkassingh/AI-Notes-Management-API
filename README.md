@@ -1,6 +1,7 @@
 # Notes Management API 
 
 A simple API for managing notes built using Node.js, Express.js, and MongoDB.
+- Used Google Gemini API to add tags according to note description. 
 
 ## ⚡Features
 - Create, read, update, and delete notes
